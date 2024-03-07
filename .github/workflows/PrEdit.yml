@@ -19,8 +19,9 @@ jobs:
         with:
           script: |
             let assignee = github.event.pull_request.assignee;
+            print(assignee);
             if(assignee === null){
-              throw new Error("Assignee Required");
+              throw new Error("Assignee Required yipee");
             }
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
