@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
+        id: linter
         with:
           result-encoding: string
           script: |
@@ -43,7 +44,7 @@ jobs:
             }
       - name: outputError
         env:
-          ERROR: ${{ steps.color-selector.outputs.ERROR }}
+          ERROR: ${{ steps.linter.outputs.ERROR }}
         run: echo $ERROR
         
           
