@@ -2,7 +2,7 @@ name: Set test status
 
 on:
   workflow_run:
-    workflows: ["PrEdit"]
+    workflows: ["CI"]
     types:
       - completed
 
