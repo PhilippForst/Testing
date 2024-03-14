@@ -38,10 +38,15 @@ jobs:
             }
 
             if(hasError){
-              core.setOutput("error", errorText)
+              core.setOutput("ERROR", errorText)
               core.error(errorText)
             }
-      - run: echo $GITHUB_STEP_SUMMARY
+      - name: outputError
+        env:
+          ERROR: ${{ steps.color-selector.outputs.ERROR }}
+        run: echo $ERROR
+        
+          
         
 
         
