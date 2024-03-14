@@ -38,6 +38,15 @@ jobs:
               hasError = true
             }
 
+            let title = pr.title
+            let reg = /\[HTS-\d{3,}\]
+            let matches = title.match(reg)
+
+            if(matches == 0){
+              errorText += "Title should have [HTS-XXXX]"
+              hasError = true
+            }
+            
             if(hasError){
               core.setOutput("ERROR", errorText)
               core.error(errorText)
