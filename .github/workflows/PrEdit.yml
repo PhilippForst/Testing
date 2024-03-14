@@ -29,26 +29,26 @@ jobs:
             let hasError = false
             let errorText = ""
             if(assignees == null || assignees.length == 0){
-              errorText += "No Assignee! "
+              error("No Assignee selected"!)
               hasError = true
             }
             let reviewers = pr.requested_reviewers
             if(reviewers == null || reviewers.length == 0){
-              errorText += "No reviewers! "
-              hasError = true
+              error("No Reviewers Assigned!")
+              hasError = true;
             }
 
             let title = pr.title
-            let reg = /\[HTS-\d{3,}\]/
+            let reg = /^\[HTS-\d{3,}\]/
             let matches = title.match(reg)
 
             if(matches == null || matches.length == 0){
-              errorText += "Title should have [HTS-XXXX]"
+              error("Title should contain [HTS-XXXX] at the beginning!")
               hasError = true
             }
             
             if(hasError){
-              core.setFailed(errorText)
+              throw Error("Unresolved Errors in PR!")
             }
           
         
