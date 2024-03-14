@@ -28,17 +28,18 @@ jobs:
             let hasError = false
             let errorText = ""
             if(assignees == null || assignees.length == 0){
-              errorText += "No Assignee! \n"
+              errorText += "No Assignee! "
               hasError = true
             }
             let reviewers = pr.requested_reviewers
             if(reviewers == null || reviewers.length == 0){
-              errorText += "No reviewers! \n"
+              errorText += "No reviewers! "
               hasError = true
             }
 
             if(hasError){
               core.setOutput("error", errorText)
+              core.error(errorText)
             }
       - run: echo $GITHUB_STEP_SUMMARY
         
