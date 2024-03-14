@@ -38,11 +38,9 @@ jobs:
             }
 
             if(hasError){
-              core.setOutput("error", errorText)
+              core.error(errorText)
               core.setFailed(errorText)
             }
 
-            setCommandEcho(true)
-            echo $GITHUB_STEP_SUMMARY
         
         
