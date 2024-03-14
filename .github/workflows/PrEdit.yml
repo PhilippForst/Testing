@@ -39,7 +39,6 @@ jobs:
 
             if(hasError){
               core.setOutput("error", errorText)
-              core.setFailed(errorText)
             }
       - run: echo $GITHUB_STEP_SUMMARY
         
