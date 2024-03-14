@@ -42,20 +42,14 @@ jobs:
             let reg = /\[HTS-\d{3,}\]/
             let matches = title.match(reg)
 
-            if(matches == 0){
+            if(matches == null || matches.length == 0){
               errorText += "Title should have [HTS-XXXX]"
               hasError = true
             }
             
             if(hasError){
-              core.setOutput("ERROR", errorText)
-              core.error(errorText)
+              core.setFailed(errorText)
             }
-      - name: outputError
-        env:
-          ERROR: ${{ steps.linter.outputs.ERROR }}
-        run: echo $ERROR > $GITHUB_STEP_SUMMARY
-        
           
         
 
