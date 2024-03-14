@@ -45,7 +45,7 @@ jobs:
       - name: outputError
         env:
           ERROR: ${{ steps.linter.outputs.ERROR }}
-        run: echo $ERROR
+        run: echo $ERROR > $GITHUB_STEP_SUMMARY
         
           
         
