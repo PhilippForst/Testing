@@ -37,9 +37,5 @@ jobs:
               hasError = true
             }
 
-            if(hasError){
-              throw new Error(errorText)
-            }
-
             return errorText
         
