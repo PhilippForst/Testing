@@ -29,12 +29,12 @@ jobs:
             let hasError = false
             let errorText = ""
             if(assignees == null || assignees.length == 0){
-              error("No Assignee selected"!)
+              core.error("No Assignee selected"!)
               hasError = true
             }
             let reviewers = pr.requested_reviewers
             if(reviewers == null || reviewers.length == 0){
-              error("No Reviewers Assigned!")
+              core.error("No Reviewers Assigned!")
               hasError = true;
             }
 
@@ -43,7 +43,7 @@ jobs:
             let matches = title.match(reg)
 
             if(matches == null || matches.length == 0){
-              error("Title should contain [HTS-XXXX] at the beginning!")
+              core.error("Title should contain [HTS-XXXX] at the beginning!")
               hasError = true
             }
             
