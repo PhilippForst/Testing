@@ -22,9 +22,21 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            let assignees = context.payload.pull_request.assignees
+            let pr = context.payload.pull_request
+            let assignees = pr.pull_request.assignees
+            let hasError = false
+            let errorText = ""
             if(assignees == null || assignees.length == 0){
-              console.log("No assignee")
+              errorText += "No Assignee! \n"
+              hasError = true
             }
-            console.log(steps.set-result.outputs.result)
+            let reviewers = pr.requested_reviewers
+            if(reviewers == null || reviewers.lengt == 0){
+              errorText += "No reviewers! \n"
+              hasError = true
+            }
+
+            if(hasError){
+              throw new Error(errorText)
+            }
         
