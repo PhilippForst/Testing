@@ -25,7 +25,6 @@ jobs:
             let assignees = context.payload.pull_request.assignees
             if(assignees == null || assignees.length == 0){
               console.log("No assignee")
-              return
             }
-            console.log("assignee found")
+            console.log(steps.set-result.outputs.result)
         
