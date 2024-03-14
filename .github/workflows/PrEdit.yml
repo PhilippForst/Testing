@@ -37,5 +37,7 @@ jobs:
               hasError = true
             }
 
-            return errorText
+            if(hasError){
+              core.setFailed(errorText)
+            }
         
