@@ -48,7 +48,7 @@ jobs:
             }
             
             if(hasError){
-              throw Error("Unresolved Errors in PR!")
+              throw new Error("Unresolved Errors in PR!")
             }
           
         
