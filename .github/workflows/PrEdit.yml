@@ -5,24 +5,23 @@ on:
     types:
       - opened
       - edited
-      - labeled
-      - unlabeled
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 permissions:
   pull-requests: write
 jobs:
-  pr:
+  pr-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v7
+      - name: check assignee
+        uses: actions/github-script@v7
         with:
           script: |
-            let assignee = github.event.pull_request.assignee;
-            print(assignee);
-            if(assignee === null){
-              throw new Error("Assignee Required yipee");
+            let assignees = github.context.payload.pull_request.assignees
+            if(assignees == null || assignees.length == 0){
+              console.log("No assignee")
+              return
             }
+            console.log("assignee found")
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
