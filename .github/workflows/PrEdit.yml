@@ -39,7 +39,7 @@ jobs:
             }
 
             let title = pr.title
-            let reg = /\[HTS-\d{3,}\]
+            let reg = /\[HTS-\d{3,}\]/
             let matches = title.match(reg)
 
             if(matches == 0){
