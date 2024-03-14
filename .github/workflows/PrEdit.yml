@@ -16,7 +16,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            let assignees = github.context.payload.pull_request.assignees
+            let assignees = context.payload.pull_request.assignees
             if(assignees == null || assignees.length == 0){
               console.log("No assignee")
               return
