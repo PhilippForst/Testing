@@ -38,6 +38,7 @@ jobs:
             }
 
             if(hasError){
+              core.setOutput("error", errorText)
               core.setFailed(errorText)
             }
         
