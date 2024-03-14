@@ -23,7 +23,7 @@ jobs:
         with:
           script: |
             let pr = context.payload.pull_request
-            let assignees = pr.pull_request.assignees
+            let assignees = pr.assignees
             let hasError = false
             let errorText = ""
             if(assignees == null || assignees.length == 0){
