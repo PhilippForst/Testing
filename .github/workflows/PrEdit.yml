@@ -16,13 +16,11 @@ on:
 permissions:
   pull-requests: write
 jobs:
-  pr-lint:
+  assignee-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
-        id: linter
         with:
-          result-encoding: string
           script: |
             let pr = context.payload.pull_request
             let assignees = pr.assignees
@@ -32,6 +30,29 @@ jobs:
               core.error("No Assignee selected!")
               hasError = true
             }
+
+            let title = pr.title
+            let reg = /^\[HTS-\d{3,}\]/
+            let matches = title.match(reg)
+
+            if(matches == null || matches.length == 0){
+              core.error("Title should contain [HTS-XXXX] at the beginning!")
+              hasError = true
+            }
+            
+            if(hasError){
+              throw new Error("Unresolved Errors in PR!")
+            }
+  reviewer-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            let pr = context.payload.pull_request
+            let hasError = false
+            let errorText = ""
+
             let reviewers = pr.requested_reviewers
             if(reviewers == null || reviewers.length == 0){
               core.error("No Reviewers Assigned!")
@@ -50,6 +71,30 @@ jobs:
             if(hasError){
               throw new Error("Unresolved Errors in PR!")
             }
+  regex-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            let pr = context.payload.pull_request
+            let hasError = false
+            let errorText = ""
+
+            let title = pr.title
+            let reg = /^\[HTS-\d{3,}\]/
+            let matches = title.match(reg)
+
+            if(matches == null || matches.length == 0){
+              core.error("Title should contain [HTS-XXXX] at the beginning!")
+              hasError = true
+            }
+            
+            if(hasError){
+              throw new Error("Unresolved Errors in PR!")
+            }
+    
+  
           
         
 
