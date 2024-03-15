@@ -30,15 +30,6 @@ jobs:
               core.error("No Assignee selected!")
               hasError = true
             }
-
-            let title = pr.title
-            let reg = /^\[HTS-\d{3,}\]/
-            let matches = title.match(reg)
-
-            if(matches == null || matches.length == 0){
-              core.error("Title should contain [HTS-XXXX] at the beginning!")
-              hasError = true
-            }
             
             if(hasError){
               throw new Error("Unresolved Errors in PR!")
