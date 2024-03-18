@@ -1,4 +1,4 @@
-name: CI
+name: PR-Linter
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ on:
 permissions:
   pull-requests: write
 jobs:
-  assignee-lint:
+  pr-lint:
     runs-on: ubuntu-latest
     steps:
       - name: assignees
@@ -26,8 +26,6 @@ jobs:
           script: |
             let pr = context.payload.pull_request
             let assignees = pr.assignees
-            let hasError = false
-            let errorText = ""
             if(assignees == null || assignees.length == 0){
               core.error("No Assignee selected!")
               core.setOutput("ERROR", true)
@@ -39,23 +37,10 @@ jobs:
         with:
           script: |
             let pr = context.payload.pull_request
-            let hasError = false
-            let errorText = ""
-
             let reviewers = pr.requested_reviewers
             if(reviewers == null || reviewers.length == 0){
               core.error("No Reviewers Assigned!")
-              hasError = true;
-            }
-
-            let title = pr.title
-            let reg = /^\[HTS-\d{3,}\]/
-            let matches = title.match(reg)
-
-            if(matches == null || matches.length == 0){
-              core.error("Title should contain [HTS-XXXX] at the beginning!")
               core.setOutput("ERROR", true)
-              hasError = true
             }
 
       - name: title
@@ -64,9 +49,6 @@ jobs:
         with:
           script: |
             let pr = context.payload.pull_request
-            let hasError = false
-            let errorText = ""
-
             let title = pr.title
             let reg = /^\[HTS-\d{3,}\]/
             let matches = title.match(reg)
