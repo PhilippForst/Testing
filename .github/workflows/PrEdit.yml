@@ -86,7 +86,7 @@ jobs:
           script: |
             const { A_ERROR, B_ERROR, C_ERROR } = process.env
             if(A_ERROR || B_ERROR || C_ERROR){
-               core.setFailed("One or more steps failed)
+               core.setFailed("One or more steps failed")
             }
               
     
