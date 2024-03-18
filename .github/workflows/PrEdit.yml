@@ -84,6 +84,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const { A_ERROR, B_ERROR, C_ERROR } = process.env
             if(A_ERROR || B_ERROR || C_ERROR){
                core.setFailed("One or more steps failed)
             }
