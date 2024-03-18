@@ -18,10 +18,10 @@ permissions:
 jobs:
   assignee-lint:
     runs-on: ubuntu-latest
-    env:
-      HAS_ERROR: ${{ steps.linter.outputs.HAS_ERROR }}
     steps:
       - name: assignees
+        env:
+          HAS_ERROR: ${{ steps.linter.outputs.HAS_ERROR }}
         id: assignees
         uses: actions/github-script@v7
         with:
