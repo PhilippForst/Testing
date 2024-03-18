@@ -18,8 +18,12 @@ permissions:
 jobs:
   assignee-lint:
     runs-on: ubuntu-latest
+    env:
+      HAS_ERROR: ${{ steps.linter.outputs.HAS_ERROR }}
     steps:
-      - uses: actions/github-script@v7
+      - name: assignees
+        id: assignees
+        uses: actions/github-script@v7
         with:
           script: |
             let pr = context.payload.pull_request
@@ -27,17 +31,11 @@ jobs:
             let hasError = false
             let errorText = ""
             if(assignees == null || assignees.length == 0){
-              core.error("No Assignee selected!")
-              hasError = true
+              core.setFailed("No Assignee selected!")
             }
             
-            if(hasError){
-              throw new Error("Unresolved Errors in PR!")
-            }
-  reviewer-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/github-script@v7
+      - name: reviewers
+        uses: actions/github-script@v7
         with:
           script: |
             let pr = context.payload.pull_request
@@ -62,10 +60,8 @@ jobs:
             if(hasError){
               throw new Error("Unresolved Errors in PR!")
             }
-  regex-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/github-script@v7
+      - name: title
+        uses: actions/github-script@v7
         with:
           script: |
             let pr = context.payload.pull_request
