@@ -1,0 +1,27 @@
+name: Cpp linter
+permissions:
+  pull-requests: write
+on:
+  pull_request:
+      branches: [ master, develop ]
+  workflow_dispatch:
+
+jobs:
+  style-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Style Check
+        uses: PhilippForst/cpp-linter-action/.github/workflows/maincpp-linter-action@main
+        id: cppLinter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          style: 'file' # uses nearest clang-format config file
+          tidy-checks: '' # uses nearest clang-tidy config file
+          extra-args: '-std=c++17' # extra arguments to pass to clang-tidy, will use C++17 standard
+          thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
+      - name: Check Fail
+        if: steps.cppLinter.outputs.checks-failed > 0
+        run: exit 1
