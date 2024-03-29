@@ -3,7 +3,7 @@ permissions:
   pull-requests: write
 on:
   pull_request:
-      branches: [ master, develop ]
+      branches: [ main, develop ]
   workflow_dispatch:
 
 jobs:
