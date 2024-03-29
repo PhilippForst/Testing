@@ -7,13 +7,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  style-linter:
+  style-linter:      
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Style Check
-        uses: PhilippForst/cpp-linter-action/.github/workflows/maincpp-linter-action@main
+        uses: PhilippForst/cpp-linter-action@main
         id: cppLinter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
