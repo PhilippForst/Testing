@@ -10,13 +10,17 @@
 #include <vector>
 #include <openssl/sha.h>
 
-class HelloWorld {
+class HelloWorld
+        {
 public:
+
+
 std::vector<unsigned char> stringToBytes(std::string &str);
 
 std::vector<unsigned char> calculateHash(std::vector<unsigned char> &data);
 
 std::string hashToHex(std::vector<unsigned char> &hash);
+
 
 };
 
