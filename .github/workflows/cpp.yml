@@ -4,14 +4,16 @@ permissions:
 on:
   pull_request:
       branches: [ main, develop ]
-  workflow_dispatch:
 
 jobs:
   style-linter:      
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
+      - uses: actions/checkout@v4
       - name: Style Check
-        uses: PhilippForst/cpp-linter-action@main
+        uses: cpp-linter/cpp-linter-action@v2
         id: cppLinter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
