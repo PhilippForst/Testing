@@ -1,3 +1,4 @@
+Language: Cpp
 UseTab: Never
 IndentWidth: 4
 BreakBeforeBraces: Allman
