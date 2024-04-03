@@ -4,6 +4,7 @@ permissions:
 on:
   pull_request:
       branches: [ main, develop ]
+      paths: ['**.c', '**.cpp', '**.h', '**.hpp', '**.cxx', '**.hxx', '**.cc', '**.hh', '**CMakeLists.txt', 'meson.build', '**.cmake']
 
 jobs:
   style-linter:      
@@ -18,10 +19,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          style: 'file' # uses nearest clang-format config file
-          tidy-checks: '' # uses nearest clang-tidy config file
-          extra-args: '-std=c++17' # extra arguments to pass to clang-tidy, will use C++17 standard
-          thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
+          style: 'file' # uses nearest .clang-format config file
+          tidy-checks: '' # uses nearest .clang-tidy config file
+          #extra-args: '-std=c++17' extra arguments to pass to clang-tidy, will use C++17 standard
+          #thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
       - name: Check Fail
         if: steps.cppLinter.outputs.checks-failed > 0
         run: exit 1
