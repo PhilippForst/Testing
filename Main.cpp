@@ -11,6 +11,12 @@
 int main()
 {
 
+
+    for (;;) break;
+
+
+    printf("Hello world!\n");
+
     std::string data = "Hello, World!";
     auto helloWorld = new HelloWorld();
     auto bytes = helloWorld->stringToBytes(data);
@@ -19,5 +25,12 @@ int main()
     std::cout << "Hash of '" << data << "' is: " << hexStr << std::endl;
 
     return 0;
+
+
+
+
+    auto h = new HelloWorld();
+
+
 
 }
