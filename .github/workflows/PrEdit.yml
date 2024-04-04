@@ -12,7 +12,6 @@ on:
       - converted_to_draft
       - ready_for_review
       - review_requested
-      - review_request_
   workflow_dispatch:
 permissions:
   pull-requests: write
