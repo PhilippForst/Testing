@@ -21,8 +21,8 @@ jobs:
         with:
           style: 'file' # uses nearest .clang-format config file
           tidy-checks: '' # uses nearest .clang-tidy config file
-          #extra-args: '-std=c++17' extra arguments to pass to clang-tidy, will use C++17 standard
-          #thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
+          extra-args: '-std=c++17' extra arguments to pass to clang-tidy, will use C++17 standard
+          thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
       - name: Check Fail
         if: steps.cppLinter.outputs.checks-failed > 0
         run: exit 1
