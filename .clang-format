@@ -8,7 +8,7 @@ ColumnLimit: 120
 SpacesInParentheses: false
 SpaceBeforeParens: Never
 AccessModifierOffset: -4
-#AllowShortCaseLabelsOnASingleLine: true
-#AllowShortFunctionsOnASingleLine: Inline
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Inline
 #IndentPPDirectives: BeforeHash
 #QualifierAlignment: Left
