@@ -3,11 +3,11 @@ project(Testing)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
+include_directories(..)
 
 find_package(OpenSSL REQUIRED)
 
-include_directories(.)
+include_directories(..)
 
 add_executable(Testing
         HelloWorld.cpp
