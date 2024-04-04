@@ -10,5 +10,5 @@ SpaceBeforeParens: Never
 AccessModifierOffset: -4
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: Inline
-#IndentPPDirectives: BeforeHash
-#QualifierAlignment: Left
+IndentPPDirectives: BeforeHash
+QualifierAlignment: Left
