@@ -2,11 +2,8 @@ name: Cpp linter
 permissions:
   pull-requests: write
 on:
-  push:
-    branches: [ main, develop ]
   pull_request:
       branches: [ main, develop ]
-      paths: ['**.c', '**.cpp', '**.h', '**.hpp', '**.cxx', '**.hxx', '**.cc', '**.hh', '**CMakeLists.txt', 'meson.build', '**.cmake']
 
 jobs:
   style-linter:      

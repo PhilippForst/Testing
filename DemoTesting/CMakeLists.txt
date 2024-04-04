@@ -10,9 +10,9 @@ find_package(OpenSSL REQUIRED)
 include_directories(..)
 
 add_executable(Testing
-        HelloWorld.cpp
-        HelloWorld.h
-        Main.cpp)
+        ../HelloWorld.cpp
+        ../HelloWorld.h
+        ../Main.cpp)
 
 # Link OpenSSL to your target
 target_link_libraries(Testing OpenSSL::SSL)
