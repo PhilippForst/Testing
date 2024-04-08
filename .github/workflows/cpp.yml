@@ -1,16 +1,16 @@
 name: Cpp linter
 on:
   pull_request:
-      branches: [ main, develop ]
-      paths: ['**.c', '**.cpp', '**.h', '**.hpp', '**.cxx', '**.hxx', '**.cc', '**.hh', '**CMakeLists.txt', 'meson.build', '**.cmake']
+    branches: [ main, develop ]
+    paths: [ '**.c', '**.cpp', '**.h', '**.hpp', '**.cxx', '**.hxx', '**.cc', '**.hh', '**CMakeLists.txt', 'meson.build', '**.cmake' ]
   push:
     branches: [ main, master, develop ]
     paths: [ '**.c', '**.cpp', '**.h', '**.hpp', '**.cxx', '**.hxx', '**.cc', '**.hh', '**CMakeLists.txt', 'meson.build', '**.cmake' ]
 jobs:
-  style-linter:      
+  style-linter:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +22,8 @@ jobs:
         with:
           style: 'file' # uses nearest .clang-format config file
           tidy-checks: '' # uses nearest .clang-tidy config file
+          format-review: true
+          tidy-review: true
           extra-args: '-std=c++17' #extra arguments to pass to clang-tidy, will use C++17 standard
           thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
       - name: Check Fail
