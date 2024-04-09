@@ -16,7 +16,8 @@ std::vector<unsigned char> HelloWorld::calculateHash(std::vector<unsigned char> 
     return hash;
 }
 
-std::string HelloWorld::hashToHex(std::vector<unsigned char> &hash) {
+std::string HelloWorld::hashToHex(std::vector<unsigned char> &hash)
+{
     std::string hexStr;
     char buf[3];
     for(const auto &byte : hash)
