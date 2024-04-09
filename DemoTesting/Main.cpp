@@ -9,6 +9,7 @@
 #include "HelloWorld.h"
 
 int main()
+
 {
 
 
@@ -22,15 +23,12 @@ int main()
     auto bytes = helloWorld->stringToBytes(data);
     auto hash = helloWorld->calculateHash(bytes);
     auto hexStr = helloWorld->hashToHex(hash);
-    std::cout << "Hash of '" << data << "' is: " << hexStr << std::endl;
+        std::cout << "Hash of '" << data << "' is: " << hexStr << std::endl;
 
     return 0;
 
 
-
-
     auto h = new HelloWorld();
-
 
 
 }
