@@ -23,7 +23,7 @@ jobs:
           version: 18
           style: 'file' # uses nearest .clang-format config file
           tidy-checks: '' # uses nearest .clang-tidy config file
-          #format-review: true
+          format-review: true
           #tidy-review: true
           extra-args: '-std=c++17' #extra arguments to pass to clang-tidy, will use C++17 standard
           thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
